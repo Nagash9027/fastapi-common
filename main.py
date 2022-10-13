@@ -1,8 +1,6 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 
-from fractions import Fraction
-
 from database import models, schemas
 from database.schemas import UserDisplay
 from database.session import engine, get_db
@@ -29,12 +27,12 @@ async def get(user_id: int, db: Session = Depends(get_db)):
     return schemas.get_user(db, user_id)
 
 
-origins = [
+origins = [  # 프론트 엔드 분할
     'http://localhost:3000',
     'http://127.0.0.1:3000'
 ]
 
-app.add_middleware(
+app.add_middleware(  # 프론트 엔드 관련 허용
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
