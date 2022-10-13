@@ -11,7 +11,7 @@ from routes.articles import article, comment
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-app.include_router(user.router)
+app.include_router(user.router)  # 라우팅
 app.include_router(article.router)
 app.include_router(comment.router)
 app.include_router(channels.router)
