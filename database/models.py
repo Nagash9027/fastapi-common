@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, DateTime, Enum, ForeignKey
-from sqlalchemy.orm import relationship, validates
+from sqlalchemy.orm import relationship
 
 from database.session import Base
 
@@ -18,16 +18,6 @@ class Users(Base, BaseMixin):
     password = Column(String)
 
     items = relationship('Articles', back_populates='author')
-
-    # 게시글 스크랩 기능 추가
-    # 리스트 즐겨찾기?
-
-
-# class UsersA(Base, BaseMixin):
-#     __tablename__ = 'users_a'
-#     username = Column(String, uniques=True, index=True)
-#     email = Column(String)
-#     password = Column(String)
 
 
 class Articles(Base, BaseMixin):
@@ -77,7 +67,7 @@ class Comments(Base, BaseMixin):
     children = relationship('Comments',
                             back_populates='root',)
 
-    # 대댓글 기능을 위한 reply 관련 요소 -> 자기 자신을 부모 혹은 자식으로 둘 수 있게
+    # 대댓글 기능을 위한 reply 관련 요소? -> 자기 자신을 부모 혹은 자식으로 둘 수 있게
 
 
 """

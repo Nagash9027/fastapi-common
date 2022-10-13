@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 
 from auth.oauth2 import get_current_user
 from database import schemas
-from database.schemas import ArticleBase, ArticleDisplay, UserBase, User, ArticleUpdate, ArticleListDisplay
+from database.schemas import ArticleBase, ArticleDisplay, User, ArticleUpdate, ArticleListDisplay
 from database.session import get_db
 
 router = APIRouter(

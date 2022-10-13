@@ -1,14 +1,10 @@
-import json
-from datetime import datetime
-
 from fastapi import Depends, APIRouter, status, HTTPException, Form
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
 from auth.oauth2 import create_access_token
 from database import schemas, models
-from database.hash import verify_password, get_password_hash
-from database.models import Users
+from database.hash import verify_password
 from database.schemas import UserBase, UserDisplay
 from database.session import get_db
 
@@ -18,7 +14,6 @@ router = APIRouter(
 )
 
 
-# create user form-data? => UserBase = Depends(UserBase.as_form)
 @router.post('/', response_model=UserDisplay, status_code=status.HTTP_201_CREATED)
 async def create_user(request: UserBase, db: Session = Depends(get_db)):
     return schemas.create_user(db, request)
